@@ -3,7 +3,7 @@ import { Frame } from "tns-core-modules/ui";
 
 function share(thingsToShare) {
   const activityController = UIActivityViewController.alloc()
-      .initWithActivityItemsApplicationActivities(thingsToShare, null);
+    .initWithActivityItemsApplicationActivities(thingsToShare, null);
 
   const presentViewController = activityController.popoverPresentationController;
   if (presentViewController) {
@@ -13,6 +13,8 @@ function share(thingsToShare) {
       presentViewController.barButtonItem = page.ios.navigationItem.rightBarButtonItems[0];
     } else {
       presentViewController.sourceView = page.ios.view;
+      presentViewController.permittedArrowDirections = 0
+      presentViewController.sourceRect = CGRectMake(CGRectGetMidX(presentViewController.sourceView.bounds), CGRectGetMidY(presentViewController.sourceView.bounds), 0, 0);
     }
   }
 
